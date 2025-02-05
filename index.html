@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>الدكتور صبري</title>
+</head>
+<script>
+    let cont = 0;
+    
+    function add(){
+        document.getElementById("p").innerHTML += '<br><input required class="p" id=p'+cont+' type="text" name="p'+cont+'" value="p'+cont+'">';
+        document.getElementById("p").innerHTML += '<input required class="t" id=ta'+cont+' type="number" name="ta'+cont+'"  placeholder="Time Arriv '+cont+'">';
+        document.getElementById("p").innerHTML += '<input required class="ts" id=ts'+cont+' type="number" name="ts'+cont+'"  placeholder="Time Serve '+cont+'">';
+        document.getElementById("p").innerHTML += '<input required class="pri" id=pri'+cont+' type="number" name="ts'+cont+'"  placeholder="Priority '+cont+'">';
+        cont += 1;
+        to_none();
+    }
+    function delet(){
+        if(cont > 0){
+        cont -= 1;
+        document.getElementById("p").removeChild(document.getElementById('p'+cont));
+        document.getElementById("p").removeChild(document.getElementById('ta'+cont));
+        document.getElementById("p").removeChild(document.getElementById('ts'+cont));
+        document.getElementById("p").removeChild(document.getElementById('pri'+cont));
+        }
+    }
+    function submi(){
+        const arr =[] ;
+        service = document.getElementById("op").value;
+        for (let index = 0; index < cont; index++) {
+            let p = document.getElementById("p"+index).value;
+            let ta = document.getElementById("ta"+index).value;
+            let ts = document.getElementById("ts"+index).value;
+            let qun = document.getElementById("akrm").value;
+            if(service==3){
+            let pri = document.getElementById("ts"+index).value;
+            arr.push([p,ta,ts,pri]);            
+            }else if(service==4){
+            sessionStorage.setItem('quntime',qun);
+            }
+            else
+            arr.push([p,ta,ts]);            
+        }
+        sessionStorage.setItem('item', JSON.stringify(arr));
+        sessionStorage.setItem('cont',cont);
+        sessionStorage.setItem('service',service);
+        location.href = "home.html";
+    }
+    function to_none() {
+        if(document.getElementById('op').value==3){
+            for(let i=0;i<cont;i++)
+            document.getElementById("pri"+i).style.display = 'inline';
+            document.getElementById("akrm").style.display = 'none';
+        }else if(document.getElementById('op').value==4){
+        for(let i=0;i<cont;i++) 
+        document.getElementById("pri"+i).style.display = 'none';
+        console.log(1);
+        document.getElementById("akrm").style.display = 'inline';     
+    }
+        else{
+        for(let i=0;i<cont;i++)
+        document.getElementById("pri"+i).style.display = 'none';
+        document.getElementById("akrm").style.display = 'none';
+        
+    }}
+ 
+
+
+    
+
+    </script>
+<body bgcolor="#222831" >
+    <div class="form">
+    <form id="form" action="" method="post">
+        <label for="">choose the service you want : </label>
+        <select id="op" name="op" onchange="to_none()">
+            <option value="1">frist come frist serve</option>
+            <option value="2">short come short serve</option>
+            <option value="3">priority scheduling</option>
+            <option value="4">round and robin</option>
+        </select>
+        <input type="button" value="p+" onclick="add()">
+        <input type="button" value="p-" onclick="delet()">
+        <br>
+        <div >
+        <input required class="akrm" id="akrm" type="number" name="akrm"  placeholder="quantum">
+        </div>
+        <div id="p">
+        </div>
+        <br>       
+        <br>
+        <input type="button" value="send" onclick="submi()">
+    </form>
+    <div id="akrm"></div>
+    </div>
+
+</body>
+</html>

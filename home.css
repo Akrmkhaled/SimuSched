@@ -1,0 +1,101 @@
+.img{
+    width: auto;
+    height: 500px;
+}
+.clo{
+    width: 200px;
+    position: absolute;
+    top: 150px;
+    left: 150px;
+}
+
+.bus{
+    width: 8px;
+    height: 8px;
+    background-color: none;
+    position: absolute;
+    top: 253.5px;
+    left: 1155px;
+    /* animation: bus 1s infinite; */
+}
+table, tr, td{
+    border: 1px solid black;
+}
+.tabel{
+    position: absolute;
+    top: 320px;
+    right: 450px;
+    font-size: 50px;
+    color: #00ADB5;
+    text-shadow: #000000 0px 0px 5px ;
+}
+.wait_tabel{
+    position: absolute;
+    top: 100px;
+    right: 450px;
+    font-size: 50px;
+    color: #00ADB5;
+    text-shadow: #000000 0px 0px 5px ;
+}
+.timer{
+    font-size: 120px;
+    position: absolute;
+    top: 30px;
+    left: 190px;
+}
+.c{
+    width: 4px;
+    height: 52px;
+    background-color: black;
+    position: absolute;
+    top: 200px;
+    left: 249px;
+    transform-origin: bottom;
+    /* animation: cloce 1s infinite; */
+}
+.shcpu{
+    z-index: -1;
+    width: 130px;
+    height: 130px;
+    position: absolute;
+    top: 200px;
+    right: 145px;
+    background-color: #00ADB5;
+    
+}
+@keyframes shcpu{
+    0%{
+    box-shadow: 0px 0px 40px 30px #00ADB5;
+    }
+    100%
+    {
+    box-shadow: 0px 0px 60px 50px #00ADB5;
+
+    }
+
+}
+@keyframes cloce{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+@keyframes bus {
+    0%{
+        background-color: #00ADB5;
+    box-shadow: 0px 0px 60px 20px #00ADB5;
+
+        left: 490px;
+    }
+    99%{
+        background-color: #00ADB5;
+    box-shadow: 0px 0px 60px 20px #00ADB5;
+
+        left: 1155px;
+    }
+    100%{
+        background-color: none;
+    }
+}
